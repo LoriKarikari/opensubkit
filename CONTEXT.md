@@ -1,6 +1,6 @@
 # OpenSubKit
 
-OpenSubKit is an open-source, self-hosted backend for in-app purchases and subscriptions that speaks the RevenueCat SDK's protocol. It uses RevenueCat's vocabulary so migrating developers keep the words they already know.
+OpenSubKit is an open-source, self-hosted backend for in-app purchases and subscriptions, compatible with the existing SDK. It uses that SDK's vocabulary so migrating developers keep the words they already know.
 
 ## Language
 

@@ -1,6 +1,6 @@
 # OpenSubKit
 
-Open-source, self-hosted backend for the RevenueCat SDKs. Apps keep the stock SDK and point its `proxyURL` at OpenSubKit.
+Open-source, self-hosted backend for in-app purchases and subscriptions, compatible with the existing SDK. Apps keep their SDK and point it at OpenSubKit.
 
 ## Agent docs
 
