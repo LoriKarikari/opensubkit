@@ -55,6 +55,10 @@ _Avoid_: SKU, item, plan
 A level of access, such as "pro", that one or more Products unlock.
 _Avoid_: feature, permission, tier
 
+**Access End**:
+The moment a Customer's Entitlement stops being active, derived from the store's state for the purchase that grants it. Grace periods extend it, refunds and pauses pull it back.
+_Avoid_: expiry, expiration date, end date
+
 **Offering**:
 A named set of Packages an app presents to a Customer as a purchase choice.
 _Avoid_: paywall, plan set
