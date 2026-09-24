@@ -6,7 +6,7 @@ Research for [Webhook and server-side customer API formats](https://github.com/L
 
 1. **The server-side customer check is the SDK's own endpoint.** RevenueCat's REST v1 "Get or Create Customer" is `GET /v1/subscribers/{app_user_id}`. It "gets the latest Customer Info for the customer with the given App User ID, or creates a new customer if it doesn't exist" ([REST v1 Customers][rc-v1-customers]). That's the same path and response the SDK uses ([sdk-wire-contract.md](./sdk-wire-contract.md)). OpenSubKit supports it by accepting a secret key there too.
 2. **A secret key adds `subscriber_attributes`.** Secret keys are "prefixed `sk_`", are "project-wide", and only responses to secret-key requests include `subscriber_attributes` ([API keys][rc-keys], [REST v1 reference][rc-v1-transactions]). A public SDK key gets the plain CustomerInfo.
-3. **REST v2 is not worth targeting in v0.** It's a different model under `https://api.revenuecat.com/v2`, uses RevenueCat's own object IDs, and needs separate v2 keys ("API v1 keys will not work with REST API v2") ([REST v2 overview][rc-v2]). Developers migrating their server code will more likely call v1.
+3. **REST v2 is out of v0, and nothing needs it.** The SDK never calls v2, so the SDK wire contract is the only compatibility target. v2 is RevenueCat's newer server API under `https://api.revenuecat.com/v2`, with customer endpoints such as `GET /v2/projects/{project_id}/customers/{customer_id}` that return `active_entitlements` ([REST v2 customer][rc-v2-customer]). But it uses RevenueCat's own object IDs like `proj1ab2c3d4` and `entla1b2c3d4e5`, needs separate v2 keys ("API v1 keys will not work with REST API v2"), and is mostly configuration endpoints ([REST v2 overview][rc-v2]). RevenueCat staff say v1 `/subscribers` "is safe, it won't be deprecated" ([community answer][rc-v1-safe]). v2 is revisited when OpenSubKit's own admin API is designed.
 4. **Webhooks are a single signed POST per event, at least once.** Delivery is `POST` with a JSON body. Only a 200 counts as success. Retries happen "up to 5 times" at 5, 10, 20, 40, and 80 minutes, with a 60-second response timeout ([Webhooks][rc-webhooks]). Retries "reuse the same `id` and `event_timestamp_ms`". Receivers are told to dedupe on `id` and to call `GET /subscribers` after any webhook instead of relying on event contents ([Webhooks][rc-webhooks], [Event types and fields][rc-events]).
 5. **Webhooks need their own outbox.** Retries over about 2.5 hours, a manual retry button in RevenueCat's dashboard, and at-least-once delivery all imply stored events with delivery attempts. That's a table for the Data model ticket.
 
@@ -89,6 +89,8 @@ Parsers on the receiving side are told to "parse defensively" and to expect new 
 [rc-v1-customers]: https://www.revenuecat.com/docs/api-v1/customers
 [rc-v1-transactions]: https://www.revenuecat.com/docs/api-v1/transactions
 [rc-v2]: https://www.revenuecat.com/docs/api-v2
+[rc-v2-customer]: https://www.revenuecat.com/docs/api-v2/customer
+[rc-v1-safe]: https://community.revenuecat.com/general-questions-7/not-getting-subscriptions-associated-to-a-customerid-4861
 [rc-keys]: https://www.revenuecat.com/docs/projects/authentication
 [rc-attributes]: https://www.revenuecat.com/docs/customers/customer-attributes
 [rc-webhooks]: https://www.revenuecat.com/docs/integrations/webhooks
