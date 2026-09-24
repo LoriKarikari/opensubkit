@@ -5,7 +5,7 @@ How agents consume this repo's domain documentation.
 ## Before exploring, read these
 
 - **`CONTEXT.md`** at the repo root, the project glossary.
-- **`docs/adr/`**, the ADRs that touch the area you're about to work in.
+- **`.agents/adr/`**, the ADRs that touch the area you're about to work in.
 
 If either doesn't exist yet, proceed silently. They're created when a term or decision actually gets resolved, not upfront.
 
@@ -17,8 +17,10 @@ Single context.
 /
 ├── AGENTS.md
 ├── CONTEXT.md
-├── .agents/docs/     agent config: issue tracker, triage labels, this file
-└── docs/adr/         architecture decision records
+└── .agents/
+    ├── docs/         agent config: issue tracker, triage labels, this file
+    ├── adr/          architecture decision records
+    └── research/     research findings, one file per research ticket
 ```
 
 ## Use the glossary's vocabulary
