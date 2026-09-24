@@ -4,6 +4,14 @@ OpenSubKit is an open-source, self-hosted backend for in-app purchases and subsc
 
 ## Language
 
+**Project**:
+A set of Apps that share Customers, Entitlements, and Offerings. One install holds any number of Projects.
+_Avoid_: workspace, tenant, organization
+
+**App**:
+One app in one store, the App Store or Google Play, belonging to a Project and holding its own public SDK key.
+_Avoid_: platform, client
+
 **App User ID**:
 The identifier an app uses for one person, either assigned by the app or generated anonymously by the SDK.
 _Avoid_: user ID, account ID
