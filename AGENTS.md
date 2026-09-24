@@ -2,6 +2,11 @@
 
 Open-source, self-hosted backend for in-app purchases and subscriptions, compatible with the existing SDK. Apps keep their SDK and point it at OpenSubKit.
 
+## Workflow
+
+- `main` is protected. Every change lands through a pull request from its own branch. Direct pushes, force pushes, and deleting `main` are rejected.
+- Commit messages follow Conventional Commits.
+
 ## Agent docs
 
 - **Issue tracker.** GitHub Issues on `LoriKarikari/opensubkit`, driven with `gh`. See `.agents/docs/issue-tracker.md`.
